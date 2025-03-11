@@ -1,4 +1,4 @@
-# PyPlication
+# PyPlication [![Health Check](https://github.com/RubenBez/pyplication/actions/workflows/health-check.yml/badge.svg)](https://github.com/RubenBez/pyplication/actions/workflows/health-check.yml)
 
 Small demo project for send and parsing HTML
 
