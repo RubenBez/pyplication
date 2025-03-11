@@ -6,8 +6,15 @@ name: Health Check
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - pyplication/**
+      - tests/**
   pull_request:
     branches: [ "main" ]
+    paths:
+      - pyplication/**
+      - tests/**
+    
 
 permissions:
   contents: read
