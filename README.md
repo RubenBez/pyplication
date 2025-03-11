@@ -18,7 +18,7 @@ $ flask --app pyplication run
 You can run test te verify everything is working. 
 > Make sure to give execution permission to the script
 > ```bash
-> $ chmod +x test.sh
+> $ chmod +x scripts/test.sh
 > ```
 
 ```bash
