@@ -9,6 +9,7 @@ on:
     paths:
       - pyplication/**
       - tests/**
+      - ai/**
   pull_request:
     branches: [ "main" ]
     paths:
