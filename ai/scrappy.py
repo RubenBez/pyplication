@@ -5,6 +5,9 @@ from ai.print_progress import printProgressBar
 import requests
 import os
 import os.path
+import csv
+
+current_dir = os.path.dirname(os.path.realpath(__file__))
 
 def links_from_booking_com(file, output, cssClass):
     with open(file) as f:
@@ -48,13 +51,7 @@ def download_pages(link_file, save_dir):
         # Track progress
         for i, future in enumerate(futures):
             future.result()
-            printProgressBar(i + 1, total)
-
-current_dir = os.path.dirname(os.path.realpath(__file__))
-
-urls_file_name = current_dir + "/uk-booking-urls.txt"
-links_from_booking_com(current_dir + "/booking.com-uk-hotels.mhtml", urls_file_name, "a78ca197d0")  
-download_pages(urls_file_name, current_dir + "/raw_hotel")
+            printProgressBar(i + 1, total, "Downloading HTML - " + link_file)
 
 def get_redirect_url(url):
     try:
@@ -84,4 +81,47 @@ def grab_random_wiki_article():
         
     download_pages(cache_file, current_dir + "/raw_not_hotel")
 
+def extract_text(file):
+    """Fetches HTML content and extracts text from a webpage"""
+    try:
+        with open(file) as f:
+            text = f.read()
+        soup = BeautifulSoup(text, "html.parser")
+        return soup.get_text(separator=" ", strip=True)
+    except Exception as e:
+        print(f"Failed to extract {file}: {e}")
+        return None
+
+def generate_training_data(raw_hotel_dir, raw_non_hotel_dir):
+    hotel_files = os.listdir(raw_hotel_dir)
+    non_hotel_files = os.listdir(raw_non_hotel_dir)
+    
+    # Create CSV file
+    with open(current_dir + "/training_data.csv", "w", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file, lineterminator=";\r\n")
+        # Label 1 = Hotel data
+        # Label 0 = Not hotel data
+        writer.writerow(["file", "text", "label"])  # Header row
+        
+        # Process hotel pages
+        for i, file in enumerate(hotel_files):
+            text = extract_text(raw_hotel_dir + "/" + file)
+            printProgressBar(i + 1, len(hotel_files), "Hotel Training Data...")
+            if text:
+                writer.writerow([file, text, 1])
+
+        # Process non-hotel pages
+        for i, file in enumerate(non_hotel_files):
+            text = extract_text(raw_non_hotel_dir + "/" + file)
+            printProgressBar(i + 1, len(non_hotel_files), "Non-Hotel Training Data...")
+            if text:
+                writer.writerow([file, text, 0])
+
+urls_file_name = current_dir + "/uk-booking-urls.txt"
+links_from_booking_com(current_dir + "/booking.com-uk-hotels.mhtml", urls_file_name, "a78ca197d0")  
+download_pages(urls_file_name, current_dir + "/raw_hotel")
+
 grab_random_wiki_article()
+
+# Create training data
+generate_training_data(current_dir + "/raw_hotel", current_dir + "/raw_not_hotel")
