@@ -3,7 +3,8 @@ from urllib.parse import urlparse, urlunparse
 from concurrent.futures import ThreadPoolExecutor
 from ai.print_progress import printProgressBar
 import requests
-import os 
+import os
+import os.path
 
 def links_from_booking_com(file, output, cssClass):
     with open(file) as f:
@@ -21,10 +22,11 @@ def links_from_booking_com(file, output, cssClass):
 
 def save_html(url):
     try:
-        response = requests.get(url, timeout=10)
-        fileName = url.rsplit('/', 1)[-1]
-        with open("ai/raw/" + fileName, "x") as f:
-            f.write(response.text)
+        fileName = dir_path + "/raw_hotel/" + url.rsplit('/', 1)[-1]
+        if (not os.path.isfile(fileName)):    
+            with open(fileName, "x") as f:
+                response = requests.get(url, timeout=10)
+                f.write(response.text)
     except Exception as e:
         print(f"Failed to extract {url}: {e}")
         return None
@@ -49,3 +51,5 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 urls_file_name = dir_path + "/uk-booking-urls.txt"
 links_from_booking_com(dir_path + "/booking.com-uk-hotels.mhtml", urls_file_name, "a78ca197d0")  
 download_pages(urls_file_name)
+
+# Grab random wiki articles

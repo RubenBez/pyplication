@@ -2,6 +2,8 @@
 .pytest_cache
 __pycache__
 .vscode
+!.vscode/launch.json
 
-ai/raw
+ai/raw_hotel
+ai/raw_not_hotel
 ai/*.txt
