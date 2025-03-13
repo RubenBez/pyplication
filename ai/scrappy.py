@@ -117,12 +117,12 @@ def generate_training_data(raw_hotel_dir, raw_non_hotel_dir):
             if text:
                 writer.writerow([file, text, 0])
 
-# get training data for hotel websites
+# Get training data for hotel websites
 urls_file_name = current_dir + "/uk-booking-urls.txt"
 links_from_booking_com(current_dir + "/booking.com-uk-hotels.mhtml", urls_file_name, "a78ca197d0")  
 download_pages(urls_file_name, current_dir + "/raw_hotel")
 
-# get training data for non-hotel websites
+# Get training data for non-hotel websites
 grab_random_wiki_article()
 
 # Create training data
