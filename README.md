@@ -4,7 +4,12 @@ Small demo project for send and parsing HTML
 
 ## Getting Started
 
-To setup the project initially run
+To setup the project initially run this and restart vscode
+```bash
+$ python3 -m venv .venv
+```
+
+Run to install dependencies, run
 ```bash
 $ pip install -e .
 ```
