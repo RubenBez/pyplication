@@ -14,7 +14,7 @@ Run to install dependencies, run
 $ pip install -r requirements.txt
 ```
 
-To start the API
+To start the API, first setup trainig data for the [AI](#ai-wip)
 
 ```bash
 $ flask --app pyplication run
