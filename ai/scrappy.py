@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse, urlunparse
 from concurrent.futures import ThreadPoolExecutor
 from ai.print_progress import printProgressBar
+import requests
 import os 
 
 def links_from_booking_com(file, output, cssClass):
@@ -44,5 +45,7 @@ def download_pages(link_file):
             printProgressBar(i + 1, total)
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-links_from_booking_com(dir_path + "booking.com-uk-hotels.mhtml", dir_path + "uk-booking-urls.txt", "a78ca197d0")  
-download_pages(dir_path + "uk-booking-urls.txt")
+
+urls_file_name = dir_path + "/uk-booking-urls.txt"
+links_from_booking_com(dir_path + "/booking.com-uk-hotels.mhtml", urls_file_name, "a78ca197d0")  
+download_pages(urls_file_name)
