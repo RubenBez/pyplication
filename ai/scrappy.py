@@ -82,7 +82,7 @@ def grab_random_wiki_article():
     download_pages(cache_file, current_dir + "/raw_not_hotel")
 
 def extract_text(file):
-    """Fetches HTML content and extracts text from a webpage"""
+    """Extracts text from a webpage file"""
     try:
         with open(file) as f:
             text = f.read()
