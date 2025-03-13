@@ -10,12 +10,15 @@ on:
       - pyplication/**
       - tests/**
       - ai/**
+      - .github/workflows/health-check.yml
   pull_request:
     branches: [ "main" ]
     paths:
       - pyplication/**
       - tests/**
       - ai/**
+      - .github/workflows/health-check.yml
+  workflow_dispatch:
     
 
 permissions:
