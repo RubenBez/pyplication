@@ -98,7 +98,7 @@ def generate_training_data(raw_hotel_dir, raw_non_hotel_dir):
     
     # Create CSV file
     with open(current_dir + "/training_data.csv", "w", newline="", encoding="utf-8") as file:
-        writer = csv.writer(file, lineterminator=";\r\n")
+        writer = csv.writer(file, lineterminator="\r\n")
         # Label 1 = Hotel data
         # Label 0 = Not hotel data
         writer.writerow(["file", "text", "label"])  # Header row

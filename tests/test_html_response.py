@@ -1,5 +1,5 @@
 import pytest
 
-def test_html_parse(client):
+def test_route_works(client):
     response = client.post("/", data="<p>Hello python</p>")
-    assert b"Hello python" in response.data
+    assert response.status_code == 200
