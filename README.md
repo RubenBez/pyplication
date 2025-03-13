@@ -37,3 +37,13 @@ The whole project is also tested. Verify by running
 ```bash
 $ pytest
 ```
+
+## AI (WIP)
+
+To setup training data for the AI, run the following
+
+```bash
+$ python3 ai/scrappy.py
+```
+
+This will take some time depending on your internet speed, but you will end-up with `training_data.csv` that can be fed into a Model
