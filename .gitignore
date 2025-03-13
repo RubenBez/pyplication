@@ -1,8 +1,12 @@
 .venv
 .pytest_cache
 __pycache__
-.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
 !.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
 
 ai/raw_hotel
 ai/raw_not_hotel
