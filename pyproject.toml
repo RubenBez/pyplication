@@ -3,7 +3,8 @@ name = "pyplication"
 description = "Some app"
 dependencies = [
     "flask",
-    "beautifulsoup4"
+    "beautifulsoup4",
+    "requests"
 ]
 version = "1.0"
 
