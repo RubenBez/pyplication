@@ -4,7 +4,9 @@ description = "Some app"
 dependencies = [
     "flask",
     "beautifulsoup4",
-    "requests"
+    "requests",
+    "nltk",
+    "scikit-learn"
 ]
 version = "1.0"
 

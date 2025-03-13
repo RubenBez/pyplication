@@ -11,7 +11,7 @@ $ python3 -m venv .venv
 
 Run to install dependencies, run
 ```bash
-$ pip install -e .
+$ pip install -r requirements.txt
 ```
 
 To start the API
